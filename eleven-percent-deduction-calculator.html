@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11% Deduction Calculator</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#f4f6f8; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
+    .card { background:#fff; padding:2rem; border-radius:16px; box-shadow:0 8px 24px rgba(0,0,0,.08); width:min(360px,90vw); }
+    h1 { font-size:1.25rem; margin:0 0 1rem; }
+    input { width:100%; padding:.75rem; font-size:1.1rem; border:1px solid #ccc; border-radius:8px; box-sizing:border-box; }
+    .row { display:flex; justify-content:space-between; margin-top:1rem; }
+    .label { color:#555; font-size:.95rem; }
+    .value { font-weight:600; }
+    .total { font-size:1.3rem; color:#0a7d34; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>11% Deduction Calculator</h1>
+    <input id="amount" type="number" step="any" min="0" placeholder="Enter any number" oninput="calculate()">
+    <div class="row"><span class="label">Original amount</span><span class="value" id="original">£0.00</span></div>
+    <div class="row"><span class="label">11% deduction</span><span class="value" id="deduction">£0.00</span></div>
+    <div class="row"><span class="label">Total after deduction</span><span class="value total" id="total">£0.00</span></div>
+  </div>
+<script>
+function calculate() {
+  const value = parseFloat(document.getElementById('amount').value) || 0;
+  const deduction = value * 0.11;
+  const total = value - deduction;
+  const fmt = n => '£' + n.toLocaleString('en-GB', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('original').textContent = fmt(value);
+  document.getElementById('deduction').textContent = fmt(deduction);
+  document.getElementById('total').textContent = fmt(total);
+}
+</script>
+</body>
+</html>
